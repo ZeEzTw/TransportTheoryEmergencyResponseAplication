@@ -1,0 +1,25 @@
+==============================
+  TRANSPORTATION PROBLEM SOLUTION
+==============================
+
+--- ALLOCATION TABLE ---
+
+      | Casa Poporului (11) | Ateneul Roman (11) | Bulevadrul Decebal (11) | Arena Nationala (12) | 
+Sectia Nr. 1 (30) | 11@1 | 11@2 | 8@4 | -@3.00 | 
+Sectia nr. 2 (3) | -@3.00 | -@1.00 | 3@3 | -@4.00 | 
+Sectia nr. 3 (21) | -@2.00 | -@2.00 | -@1.00 | 12@1 | 
+
+--- ALLOCATIONS ---
+• 11 units from Sectia Nr. 1 to Casa Poporului (cost: 1.00, total: 11.00)
+• 11 units from Sectia Nr. 1 to Ateneul Roman (cost: 2.00, total: 22.00)
+• 8 units from Sectia Nr. 1 to Bulevadrul Decebal (cost: 4.00, total: 32.00)
+• 3 units from Sectia nr. 2 to Bulevadrul Decebal (cost: 3.00, total: 9.00)
+• 12 units from Sectia nr. 3 to Arena Nationala (cost: 1.00, total: 12.00)
+
+==============================
+  SUMMARY
+==============================
+Total Cost: 86.00 minutes
+
+File saved successfully.
+==============================

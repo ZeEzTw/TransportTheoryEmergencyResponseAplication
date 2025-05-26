@@ -396,77 +396,95 @@ public class TransportationProblem : MonoBehaviour
     /// <summary>
     /// Applies the Stepping Stone method to optimize the initial solution
     /// </summary>
-    private void SteppingStone()
+    private void SteppingStone(int maxIterations = 100) // Added maxIterations parameter with a default value
     {
         float maxReduction = 0;
         List<Shipment> move = null;
         Shipment leaving = Shipment.ZERO;
         bool isOptimal = true;
+        int currentIteration = 0; // Counter for iterations
 
         FixDegenerateCase();
 
-        for (int r = 0; r < supply.Length; r++)
+        while (currentIteration < maxIterations) // Loop until maxIterations is reached or solution is optimal
         {
-            for (int c = 0; c < demand.Length; c++)
+            isOptimal = true; // Assume optimal at the start of each iteration
+            maxReduction = 0; // Reset maxReduction
+            move = null;      // Reset move
+            leaving = Shipment.ZERO; // Reset leaving
+
+            for (int r = 0; r < supply.Length; r++)
             {
-                if (matrix[r, c] != Shipment.ZERO)
+                for (int c = 0; c < demand.Length; c++)
                 {
-                    continue;
-                }
-
-                Shipment trial = new Shipment(0, costs[r, c], r, c);
-                List<Shipment> path = GetClosedPath(trial);
-
-                if (path.Count == 0)
-                {
-                    continue; // Skip if no valid path found
-                }
-
-                float reduction = 0;
-                float lowestQuantity = float.MaxValue;
-                Shipment leavingCandidate = Shipment.ZERO;
-
-                bool plus = true;
-                foreach (var s in path)
-                {
-                    if (plus)
+                    if (matrix[r, c] != Shipment.ZERO)
                     {
-                        reduction += s.CostPerUnit;
+                        continue;
                     }
-                    else
+
+                    Shipment trial = new Shipment(0, costs[r, c], r, c);
+                    List<Shipment> path = GetClosedPath(trial);
+
+                    if (path.Count == 0)
                     {
-                        reduction -= s.CostPerUnit;
-                        if (s.Quantity < lowestQuantity)
+                        continue; // Skip if no valid path found
+                    }
+
+                    float reduction = 0;
+                    float lowestQuantity = float.MaxValue;
+                    Shipment leavingCandidate = Shipment.ZERO;
+
+                    bool plus = true;
+                    foreach (var s in path)
+                    {
+                        if (plus)
                         {
-                            leavingCandidate = s;
-                            lowestQuantity = s.Quantity;
+                            reduction += s.CostPerUnit;
                         }
+                        else
+                        {
+                            reduction -= s.CostPerUnit;
+                            if (s.Quantity < lowestQuantity)
+                            {
+                                leavingCandidate = s;
+                                lowestQuantity = s.Quantity;
+                            }
+                        }
+                        plus = !plus;
                     }
+
+                    if (reduction < maxReduction) // Improvement found
+                    {
+                        isOptimal = false; // No longer optimal
+                        move = path;
+                        leaving = leavingCandidate;
+                        maxReduction = reduction;
+                    }
+                }
+            }
+
+            if (isOptimal) // If no improvement was found in this iteration, break
+            {
+                break;
+            }
+            else // If an improvement was found, apply it
+            {
+                float quantity = leaving.Quantity;
+                bool plus = true;
+                foreach (var s in move)
+                {
+                    float newQuantity = s.Quantity + (plus ? quantity : -quantity);
+                    matrix[s.Row, s.Col] = (newQuantity <= 1e-10f) ? Shipment.ZERO :
+                                         new Shipment(newQuantity, s.CostPerUnit, s.Row, s.Col);
                     plus = !plus;
                 }
-
-                if (reduction < maxReduction)
-                {
-                    isOptimal = false;
-                    move = path;
-                    leaving = leavingCandidate;
-                    maxReduction = reduction;
-                }
             }
+            currentIteration++; // Increment iteration counter
         }
 
-        if (!isOptimal)
+        if (currentIteration >= maxIterations)
         {
-            float quantity = leaving.Quantity;
-            bool plus = true;
-            foreach (var s in move)
-            {
-                float newQuantity = s.Quantity + (plus ? quantity : -quantity);
-                matrix[s.Row, s.Col] = (newQuantity <= 1e-10f) ? Shipment.ZERO :
-                                     new Shipment(newQuantity, s.CostPerUnit, s.Row, s.Col);
-                plus = !plus;
-            }
-            SteppingStone();
+            Debug.LogWarning("Stepping Stone method reached maximum iterations. Solution may not be optimal.");
         }
     }
 
@@ -545,7 +563,8 @@ public class TransportationProblem : MonoBehaviour
         float[,] costMatrix,
         string[] stationNames,
         string[] poiNames,
-        string[] routeNames)
+        string[] routeNames,
+        int maxSteppingStoneIterations = 100) // Added parameter here
     {
         // Initialize the problem with the given data
         Initialize(availableResources, demandResources, costMatrix, stationNames, poiNames, routeNames);
@@ -554,7 +573,7 @@ public class TransportationProblem : MonoBehaviour
         NorthWestCornerRule();
         
         // Optimize the solution
-        SteppingStone();
+        SteppingStone(maxSteppingStoneIterations); // Pass the parameter here
         
         // Format the solution for the client
         return FormatSolution();

@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq; // Add using directive for LINQ
 
 /// <summary>
 /// Main application class that initializes the resource allocation system
@@ -143,21 +144,23 @@ public class MainApp : MonoBehaviour
         // Display the solution in the UI
         if (solutionText != null)
         {
-            // Build a nicely formatted solution text
+            // Update the formatting of the detailed solution data in the .txt file
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine("TRANSPORTATION PROBLEM SOLUTION\n");
+            sb.AppendLine("================ TRANSPORTATION PROBLEM SOLUTION ================");
+            sb.AppendLine();
             
             // Display the allocation table
-            sb.AppendLine("ALLOCATION TABLE:");
+            sb.AppendLine("---------------- ALLOCATION TABLE ----------------");
             
             // Header
-            sb.Append("      | ");
+            sb.Append("Station/POI | ");
             for (int j = 0; j < demandResources.Length; j++)
             {
                 if (!poiNames[j].Contains("Dummy"))
                     sb.Append($"{poiNames[j]} ({demandResources[j]}) | ");
             }
             sb.AppendLine();
+            sb.AppendLine(new string('-', 50));
             
             // Rows
             for (int i = 0; i < availableResources.Length; i++)
@@ -165,7 +168,7 @@ public class MainApp : MonoBehaviour
                 if (!stationNames[i].Contains("Dummy"))
                 {
                     sb.Append($"{stationNames[i]} ({availableResources[i]}) | ");
-                    
+
                     for (int j = 0; j < demandResources.Length; j++)
                     {
                         if (!poiNames[j].Contains("Dummy"))
@@ -173,7 +176,7 @@ public class MainApp : MonoBehaviour
                             var solution = solutions.Find(s => 
                                 s.sourceStationName == stationNames[i] && 
                                 s.destinationPointName == poiNames[j]);
-                            
+
                             if (solution != null)
                                 sb.Append($"{solution.units}@{solution.routeCost} | ");
                             else
@@ -183,24 +186,112 @@ public class MainApp : MonoBehaviour
                     sb.AppendLine();
                 }
             }
+            sb.AppendLine(new string('-', 50));
             
-            sb.AppendLine("\nALLOCATIONS:");
+            // Allocations
+            sb.AppendLine("---------------- ALLOCATIONS ----------------");
             foreach (var solution in solutions)
             {
                 sb.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
             }
+            sb.AppendLine();
             
-            // Calculate total cost
+            // Total cost
             float totalCost = 0;
             foreach (var solution in solutions)
             {
                 totalCost += solution.totalCost;
             }
+            sb.AppendLine("---------------- SUMMARY ----------------");
+            sb.AppendLine($"TOTAL COST: {totalCost:F2} minutes");
+            sb.AppendLine(new string('=', 50));
             
-            sb.AppendLine($"\nTOTAL COST: {totalCost:F2} unit-minutes");
+            // Save the detailed solution to a .txt file
+            string detailedSolutionPath = System.IO.Path.Combine(Application.dataPath, "DetailedSolution.txt");
+            System.Text.StringBuilder fileContent = new System.Text.StringBuilder();
+
+fileContent.AppendLine("==============================");
+fileContent.AppendLine("  TRANSPORTATION PROBLEM SOLUTION");
+fileContent.AppendLine("==============================\n");
+
+fileContent.AppendLine("--- ALLOCATION TABLE ---");
+fileContent.AppendLine();
+
+// Header
+fileContent.Append("      | ");
+for (int j = 0; j < demandResources.Length; j++)
+{
+    if (!poiNames[j].Contains("Dummy"))
+        fileContent.Append($"{poiNames[j]} ({demandResources[j]}) | ");
+}
+fileContent.AppendLine();
+
+// Rows
+for (int i = 0; i < availableResources.Length; i++)
+{
+    if (!stationNames[i].Contains("Dummy"))
+    {
+        fileContent.Append($"{stationNames[i]} ({availableResources[i]}) | ");
+
+        for (int j = 0; j < demandResources.Length; j++)
+        {
+            if (!poiNames[j].Contains("Dummy"))
+            {
+                var solution = solutions.Find(s => 
+                    s.sourceStationName == stationNames[i] && 
+                    s.destinationPointName == poiNames[j]);
+
+                if (solution != null)
+                    fileContent.Append($"{solution.units}@{solution.routeCost} | ");
+                else
+                    fileContent.Append($"-@{costMatrix[i, j]:F2} | ");
+            }
+        }
+        fileContent.AppendLine();
+    }
+}
+
+fileContent.AppendLine("\n--- ALLOCATIONS ---");
+foreach (var solution in solutions)
+{
+    fileContent.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
+}
+
+// Use the existing totalCost variable
+fileContent.AppendLine("\n==============================");
+fileContent.AppendLine("  SUMMARY");
+fileContent.AppendLine("==============================");
+fileContent.AppendLine($"Total Cost: {totalCost:F2} minutes\n");
+
+fileContent.AppendLine("File saved successfully.");
+fileContent.AppendLine("==============================");
+
+System.IO.File.WriteAllText(detailedSolutionPath, fileContent.ToString());
+Debug.Log($"Detailed solution saved to: {detailedSolutionPath}");
             
-            // Set the solution text
-            solutionText.text = sb.ToString();
+            // Update the text box to display only the total cost
+            solutionText.text = $"TOTAL COST: {totalCost:F2} minutes";
+        }
+        
+        // Trigger animations and update UI for each allocation
+        foreach (var solution in solutions)
+        {
+            // Find the index of the source station and destination point
+            int stationIndex = System.Array.IndexOf(stationNames, solution.sourceStationName);
+            int poiIndex = System.Array.IndexOf(poiNames, solution.destinationPointName);
+
+            if (stationIndex >= 0 && poiIndex >= 0)
+            {
+                // Get the ResourceStations component of the station
+                ResourceStations station = FindObjectsOfType<ResourceStations>()
+                    .FirstOrDefault(s => s.stationName == solution.sourceStationName);
+
+                if (station != null)
+                {
+                    // Start the route animation and update the police car count text
+                    station.StartRouteAnimation(poiIndex, Mathf.RoundToInt(solution.units));
+                }
+            }
         }
         
         // Log results for debugging

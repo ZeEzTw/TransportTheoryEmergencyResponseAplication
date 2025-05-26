@@ -27,14 +27,17 @@ public class ResourceStations : MonoBehaviour
     [Header("Visualization")]
     public Color stationColor = Color.blue;
     public float pointSize = 1.0f;
-    
+    [Header("Route Animations")]
+    [Tooltip("The animation with police car to each point of interest")]
+    public GameObject[] routeAnimations;
+    public TextMeshProUGUI[] policeCarCountTexts;
     private void Start()
     {
         if (updateButton != null)
         {
             updateButton.onClick.AddListener(UpdateResourceCount);
         }
-        
+
         position = transform.position;
     }
     
@@ -98,6 +101,50 @@ public class ResourceStations : MonoBehaviour
             return $"Route from {stationName} to Point {pointIndex}";
 
         return routeNames[pointIndex];
+    }
+    public void RemoveUnitsFromSection(int unitsToRemove)
+    {
+        if (unitsToRemove <= 0 || resourcesAvailable < unitsToRemove)
+        {
+            Debug.LogWarning($"Cannot remove {unitsToRemove} units from {stationName}. Not enough resources available.");
+            return;
+        }
+
+        resourcesAvailable -= unitsToRemove;
+        if (resourceCountText != null)
+        {
+            resourceCountText.text = $"{resourcesAvailable}";
+        }
+        
+        Debug.Log($"Removed {unitsToRemove} units from {stationName}. Remaining: {resourcesAvailable}");
+    }
+    /// <summary>
+    /// Starts the animation for a specific route, enables the route animation object, and updates the police car count text.
+    /// </summary>
+    /// <param name="pointIndex">The index of the point of interest.</param>
+    /// <param name="unitsSent">The number of units sent to the point of interest.</param>
+    public void StartRouteAnimation(int pointIndex, int unitsSent)
+    {
+        if (routeAnimations != null && pointIndex >= 0 && pointIndex < routeAnimations.Length)
+        {
+            // Enable the route animation object
+            GameObject routeAnimation = routeAnimations[pointIndex];
+            RemoveUnitsFromSection(unitsSent);
+            if (routeAnimation != null)
+            {
+                routeAnimation.SetActive(true);
+            }
+        }
+
+        if (policeCarCountTexts != null && pointIndex >= 0 && pointIndex < policeCarCountTexts.Length)
+        {
+            // Update the police car count text
+            TextMeshProUGUI policeCarCountText = policeCarCountTexts[pointIndex];
+            if (policeCarCountText != null)
+            {
+                policeCarCountText.text = unitsSent.ToString();
+            }
+        }
     }
     
     private void OnDrawGizmos()

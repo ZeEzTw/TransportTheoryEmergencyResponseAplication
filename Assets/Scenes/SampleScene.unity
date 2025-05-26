@@ -565,7 +565,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 21
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -646,7 +646,7 @@ GameObject:
   - component: {fileID: 148397991}
   - component: {fileID: 148397990}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Palat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2246,7 +2246,7 @@ GameObject:
   - component: {fileID: 384697920}
   - component: {fileID: 384697919}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Decebal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3083,6 +3083,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2058022673}
   - {fileID: 1674866627}
   - {fileID: 1847485873}
   - {fileID: 938019579}
@@ -3430,7 +3431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &567297228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3861,7 +3862,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &604156848
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3916,7 +3917,7 @@ GameObject:
   - component: {fileID: 692927424}
   - component: {fileID: 692927423}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Palat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4054,7 +4055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &754733551
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4136,8 +4137,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -303.29996, y: 163.00002}
-  m_SizeDelta: {x: 160.4, y: 50}
+  m_AnchoredPosition: {x: -307.69998, y: 93.750015}
+  m_SizeDelta: {x: 169.2, y: 188.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &766132540
 MonoBehaviour:
@@ -4414,7 +4415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &776755208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4734,7 +4735,7 @@ GameObject:
   - component: {fileID: 857183350}
   - component: {fileID: 857183349}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5091,7 +5092,7 @@ GameObject:
   - component: {fileID: 938019583}
   - component: {fileID: 938019582}
   m_Layer: 0
-  m_Name: Circle (2)
+  m_Name: Nr.3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5144,9 +5145,19 @@ MonoBehaviour:
   - BabaNovac
   resourceInputField: {fileID: 600777813}
   resourceCountText: {fileID: 1091250133}
-  updateButton: {fileID: 1939251448}
+  updateButton: {fileID: 410916739}
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
+  routeAnimations:
+  - {fileID: 1651186015}
+  - {fileID: 1084244294}
+  - {fileID: 776755207}
+  - {fileID: 1654571014}
+  policeCarCountTexts:
+  - {fileID: 2122882894}
+  - {fileID: 1573338400}
+  - {fileID: 977642746}
+  - {fileID: 1242722196}
 --- !u!212 &938019581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5634,7 +5645,7 @@ GameObject:
   - component: {fileID: 977642747}
   - component: {fileID: 977642746}
   m_Layer: 0
-  m_Name: Text (TMP) (1)
+  m_Name: Decebal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5773,7 +5784,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1030888684
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5973,7 +5984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1041168751
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6080,7 +6091,7 @@ GameObject:
   - component: {fileID: 1054766325}
   - component: {fileID: 1054766324}
   m_Layer: 0
-  m_Name: Punct (1)
+  m_Name: Ateneul Roman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6120,7 +6131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e47b77b2824cd4eb676cac5fe7b4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointName: 1
+  pointName: Ateneul Roman
   pointSelected: 1
   resourcesRequested: 20
   position: {x: 0, y: 0, z: 0}
@@ -6199,7 +6210,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1084244295
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7937,7 +7948,7 @@ GameObject:
   - component: {fileID: 1242722197}
   - component: {fileID: 1242722196}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8160,7 +8171,7 @@ GameObject:
   - component: {fileID: 1253191741}
   - component: {fileID: 1253191740}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Ateneu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8381,7 +8392,7 @@ GameObject:
   - component: {fileID: 1292291146}
   - component: {fileID: 1292291145}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Decebal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9033,7 +9044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1386756270
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9145,7 +9156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1412782736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10059,7 +10070,7 @@ GameObject:
   - component: {fileID: 1573338401}
   - component: {fileID: 1573338400}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Ateneu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10745,7 +10756,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1634129592
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10810,7 +10821,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1651186016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10922,7 +10933,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1654571015
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11185,7 +11196,7 @@ GameObject:
   - component: {fileID: 1671066818}
   - component: {fileID: 1671066817}
   m_Layer: 0
-  m_Name: Punct (3)
+  m_Name: Arena Nationala
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11225,7 +11236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e47b77b2824cd4eb676cac5fe7b4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointName: 1
+  pointName: Arena Nationala
   pointSelected: 1
   resourcesRequested: 18
   position: {x: 0, y: 0, z: 0}
@@ -11301,7 +11312,7 @@ GameObject:
   - component: {fileID: 1674866631}
   - component: {fileID: 1674866630}
   m_Layer: 0
-  m_Name: Circle
+  m_Name: Nr.1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11320,7 +11331,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1260012696}
-  - {fileID: 2058022673}
   m_Father: {fileID: 484115205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -66.306}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -11358,6 +11368,16 @@ MonoBehaviour:
   updateButton: {fileID: 294459768}
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
+  routeAnimations:
+  - {fileID: 1041168750}
+  - {fileID: 1030888683}
+  - {fileID: 1412782735}
+  - {fileID: 1386756269}
+  policeCarCountTexts:
+  - {fileID: 148397990}
+  - {fileID: 1934086529}
+  - {fileID: 384697919}
+  - {fileID: 857183349}
 --- !u!212 &1674866629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11639,7 +11659,7 @@ GameObject:
   - component: {fileID: 1847485877}
   - component: {fileID: 1847485876}
   m_Layer: 0
-  m_Name: Circle (1)
+  m_Name: Nr.2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11695,6 +11715,16 @@ MonoBehaviour:
   updateButton: {fileID: 1193012035}
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
+  routeAnimations:
+  - {fileID: 1634129591}
+  - {fileID: 604156847}
+  - {fileID: 754733550}
+  - {fileID: 567297227}
+  policeCarCountTexts:
+  - {fileID: 692927423}
+  - {fileID: 1253191740}
+  - {fileID: 1292291145}
+  - {fileID: 1887089889}
 --- !u!212 &1847485875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11875,7 +11905,7 @@ GameObject:
   - component: {fileID: 1887089890}
   - component: {fileID: 1887089889}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12143,7 +12173,7 @@ GameObject:
   - component: {fileID: 1934086530}
   - component: {fileID: 1934086529}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Ateneu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12875,7 +12905,7 @@ GameObject:
   - component: {fileID: 2052686609}
   - component: {fileID: 2052686608}
   m_Layer: 0
-  m_Name: Punct
+  m_Name: CasaPoporului
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12915,7 +12945,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e47b77b2824cd4eb676cac5fe7b4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointName: 1
+  pointName: Casa Poporului
   pointSelected: 1
   resourcesRequested: 21
   position: {x: 0, y: 0, z: 0}
@@ -13000,9 +13030,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058022672}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.5468801, w: 0.83721095}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 28.0986, y: 28.0986, z: 28.098597}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1041168751}
@@ -13017,11 +13047,11 @@ RectTransform:
   - {fileID: 1654571015}
   - {fileID: 1651186016}
   - {fileID: 776755208}
-  m_Father: {fileID: 1674866627}
+  m_Father: {fileID: 484115205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 129.39993, y: 61.79995}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2071505963
@@ -13338,7 +13368,7 @@ GameObject:
   - component: {fileID: 2122882895}
   - component: {fileID: 2122882894}
   m_Layer: 0
-  m_Name: Text (TMP)
+  m_Name: Palat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13472,7 +13502,7 @@ GameObject:
   - component: {fileID: 2125770396}
   - component: {fileID: 2125770395}
   m_Layer: 0
-  m_Name: Punct (2)
+  m_Name: Bulevadrul Decebal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13512,7 +13542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18e47b77b2824cd4eb676cac5fe7b4b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointName: 1
+  pointName: Bulevadrul Decebal
   pointSelected: 1
   resourcesRequested: 21
   position: {x: 0, y: 0, z: 0}
