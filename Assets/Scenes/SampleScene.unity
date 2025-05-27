@@ -1911,8 +1911,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceStations:
-  - {fileID: 1674866628}
   - {fileID: 1847485874}
+  - {fileID: 1674866628}
   - {fileID: 938019580}
   pointsOfInterest:
   - {fileID: 2052686608}
@@ -4891,8 +4891,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.72, y: -0.36}
-  m_SizeDelta: {x: 797.17, y: 449.31}
+  m_AnchoredPosition: {x: -0.35, y: 0.11}
+  m_SizeDelta: {x: 799.31, y: 450.26}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911883099
 MonoBehaviour:
@@ -5131,7 +5131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationName: Sectia nr. 3
-  resourcesAvailable: 23
+  resourcesAvailable: 0
   position: {x: 0, y: 0, z: 0}
   costInTimeTillPoint:
   - 2
@@ -5149,15 +5149,15 @@ MonoBehaviour:
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
   routeAnimations:
-  - {fileID: 1651186015}
-  - {fileID: 1084244294}
-  - {fileID: 776755207}
-  - {fileID: 1654571014}
+  - {fileID: 1634129591}
+  - {fileID: 604156847}
+  - {fileID: 754733550}
+  - {fileID: 567297227}
   policeCarCountTexts:
-  - {fileID: 2122882894}
-  - {fileID: 1573338400}
-  - {fileID: 977642746}
-  - {fileID: 1242722196}
+  - {fileID: 692927423}
+  - {fileID: 1253191740}
+  - {fileID: 1292291145}
+  - {fileID: 1887089889}
 --- !u!212 &938019581
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6116,7 +6116,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229.6, y: 71.7}
+  m_AnchoredPosition: {x: -231, y: 71.7}
   m_SizeDelta: {x: 0.79, y: 0.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1054766324
@@ -6133,7 +6133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: Ateneul Roman
   pointSelected: 1
-  resourcesRequested: 20
+  resourcesRequested: 0
   position: {x: 0, y: 0, z: 0}
   selectionToggle: {fileID: 0}
   resourceRequestField: {fileID: 1997896503}
@@ -11238,7 +11238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: Arena Nationala
   pointSelected: 1
-  resourcesRequested: 18
+  resourcesRequested: 0
   position: {x: 0, y: 0, z: 0}
   selectionToggle: {fileID: 0}
   resourceRequestField: {fileID: 1362630059}
@@ -11351,7 +11351,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationName: Sectia Nr. 1
-  resourcesAvailable: 31
+  resourcesAvailable: 0
   position: {x: 0, y: 0, z: 0}
   costInTimeTillPoint:
   - 1
@@ -11369,15 +11369,15 @@ MonoBehaviour:
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
   routeAnimations:
-  - {fileID: 1041168750}
-  - {fileID: 1030888683}
-  - {fileID: 1412782735}
-  - {fileID: 1386756269}
+  - {fileID: 1651186015}
+  - {fileID: 1084244294}
+  - {fileID: 776755207}
+  - {fileID: 1654571014}
   policeCarCountTexts:
-  - {fileID: 148397990}
-  - {fileID: 1934086529}
-  - {fileID: 384697919}
-  - {fileID: 857183349}
+  - {fileID: 2122882894}
+  - {fileID: 1573338400}
+  - {fileID: 977642746}
+  - {fileID: 1242722196}
 --- !u!212 &1674866629
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -11698,7 +11698,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stationName: Sectia nr. 2
-  resourcesAvailable: 26
+  resourcesAvailable: 0
   position: {x: 0, y: 0, z: 0}
   costInTimeTillPoint:
   - 3
@@ -11716,15 +11716,15 @@ MonoBehaviour:
   stationColor: {r: 0, g: 0, b: 1, a: 0}
   pointSize: 1
   routeAnimations:
-  - {fileID: 1634129591}
-  - {fileID: 604156847}
-  - {fileID: 754733550}
-  - {fileID: 567297227}
+  - {fileID: 1041168750}
+  - {fileID: 1030888683}
+  - {fileID: 1412782735}
+  - {fileID: 1386756269}
   policeCarCountTexts:
-  - {fileID: 692927423}
-  - {fileID: 1253191740}
-  - {fileID: 1292291145}
-  - {fileID: 1887089889}
+  - {fileID: 148397990}
+  - {fileID: 1934086529}
+  - {fileID: 384697919}
+  - {fileID: 857183349}
 --- !u!212 &1847485875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -12930,7 +12930,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -324.5, y: -154.9}
+  m_AnchoredPosition: {x: -326.6, y: -154.9}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2052686608
@@ -12947,7 +12947,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: Casa Poporului
   pointSelected: 1
-  resourcesRequested: 21
+  resourcesRequested: 0
   position: {x: 0, y: 0, z: 0}
   selectionToggle: {fileID: 0}
   resourceRequestField: {fileID: 1125117293}
@@ -13544,7 +13544,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointName: Bulevadrul Decebal
   pointSelected: 1
-  resourcesRequested: 21
+  resourcesRequested: 0
   position: {x: 0, y: 0, z: 0}
   selectionToggle: {fileID: 0}
   resourceRequestField: {fileID: 1442522426}

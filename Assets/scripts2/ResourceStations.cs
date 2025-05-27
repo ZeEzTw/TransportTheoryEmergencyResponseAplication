@@ -125,6 +125,12 @@ public class ResourceStations : MonoBehaviour
     /// <param name="unitsSent">The number of units sent to the point of interest.</param>
     public void StartRouteAnimation(int pointIndex, int unitsSent)
     {
+        if (unitsSent <= 0 || Mathf.Abs(unitsSent) < 1e-5f) // Check for very small values
+        {
+            Debug.LogWarning($"No valid units to send to point {pointIndex} from {stationName}. Animation will not start.");
+            return;
+        }
+
         if (routeAnimations != null && pointIndex >= 0 && pointIndex < routeAnimations.Length)
         {
             // Enable the route animation object

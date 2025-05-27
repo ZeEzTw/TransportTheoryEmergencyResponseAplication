@@ -178,9 +178,9 @@ public class MainApp : MonoBehaviour
                                 s.destinationPointName == poiNames[j]);
 
                             if (solution != null)
-                                sb.Append($"{solution.units}@{solution.routeCost} | ");
+                                sb.Append($"{solution.units} ({solution.routeCost:F2}) | ");
                             else
-                                sb.Append($"-@{costMatrix[i, j]:F2} | ");
+                                sb.Append($"- ({costMatrix[i, j]:F2}) | ");
                         }
                     }
                     sb.AppendLine();
@@ -192,7 +192,7 @@ public class MainApp : MonoBehaviour
             sb.AppendLine("---------------- ALLOCATIONS ----------------");
             foreach (var solution in solutions)
             {
-                sb.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
+                sb.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} via {solution.routeName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
             }
             sb.AppendLine();
             
@@ -210,63 +210,67 @@ public class MainApp : MonoBehaviour
             string detailedSolutionPath = System.IO.Path.Combine(Application.dataPath, "DetailedSolution.txt");
             System.Text.StringBuilder fileContent = new System.Text.StringBuilder();
 
-fileContent.AppendLine("==============================");
-fileContent.AppendLine("  TRANSPORTATION PROBLEM SOLUTION");
-fileContent.AppendLine("==============================\n");
+            fileContent.AppendLine("==============================");
+            fileContent.AppendLine("  TRANSPORTATION PROBLEM SOLUTION");
+            fileContent.AppendLine("==============================\n");
 
-fileContent.AppendLine("--- ALLOCATION TABLE ---");
-fileContent.AppendLine();
+            fileContent.AppendLine("--- ALLOCATION TABLE ---");
+            fileContent.AppendLine();
 
-// Header
-fileContent.Append("      | ");
-for (int j = 0; j < demandResources.Length; j++)
-{
-    if (!poiNames[j].Contains("Dummy"))
-        fileContent.Append($"{poiNames[j]} ({demandResources[j]}) | ");
-}
-fileContent.AppendLine();
-
-// Rows
-for (int i = 0; i < availableResources.Length; i++)
-{
-    if (!stationNames[i].Contains("Dummy"))
-    {
-        fileContent.Append($"{stationNames[i]} ({availableResources[i]}) | ");
-
-        for (int j = 0; j < demandResources.Length; j++)
-        {
-            if (!poiNames[j].Contains("Dummy"))
+            // Header
+            fileContent.Append("| ");
+            for (int j = 0; j < demandResources.Length; j++)
             {
-                var solution = solutions.Find(s => 
-                    s.sourceStationName == stationNames[i] && 
-                    s.destinationPointName == poiNames[j]);
-
-                if (solution != null)
-                    fileContent.Append($"{solution.units}@{solution.routeCost} | ");
-                else
-                    fileContent.Append($"-@{costMatrix[i, j]:F2} | ");
+                if (!poiNames[j].Contains("Dummy"))
+                    fileContent.Append($"{poiNames[j]} ({Mathf.RoundToInt(demandResources[j])}) | ");
             }
-        }
-        fileContent.AppendLine();
-    }
-}
+            fileContent.AppendLine();
 
-fileContent.AppendLine("\n--- ALLOCATIONS ---");
-foreach (var solution in solutions)
-{
-    fileContent.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
-}
+            // Rows
+            for (int i = 0; i < availableResources.Length; i++)
+            {
+                if (!stationNames[i].Contains("Dummy"))
+                {
+                    fileContent.Append($"{stationNames[i]} ({Mathf.RoundToInt(availableResources[i])}) | ");
 
-// Use the existing totalCost variable
-fileContent.AppendLine("\n==============================");
-fileContent.AppendLine("  SUMMARY");
-fileContent.AppendLine("==============================");
-fileContent.AppendLine($"Total Cost: {totalCost:F2} minutes\n");
+                    for (int j = 0; j < demandResources.Length; j++)
+                    {
+                        if (!poiNames[j].Contains("Dummy"))
+                        {
+                            var solution = solutions.Find(s => 
+                                s.sourceStationName == stationNames[i] && 
+                                s.destinationPointName == poiNames[j]);
 
-fileContent.AppendLine("File saved successfully.");
-fileContent.AppendLine("==============================");
+                            if (solution != null)
+                                fileContent.Append($"{Mathf.RoundToInt(solution.units)} ({solution.routeCost:F2}) | ");
+                            else
+                                fileContent.Append($"- ({costMatrix[i, j]:F2}) | ");
+                        }
+                    }
+                    fileContent.AppendLine();
+                }
+            }
 
-System.IO.File.WriteAllText(detailedSolutionPath, fileContent.ToString());
+            fileContent.AppendLine("\n--- ALLOCATIONS ---");
+            foreach (var solution in solutions)
+            {
+                fileContent.AppendLine($"• {solution.units} units from {solution.sourceStationName} to {solution.destinationPointName} via {solution.routeName} (cost: {solution.routeCost:F2}, total: {solution.totalCost:F2})");
+            }
+
+            // Use the existing totalCost variable
+            fileContent.AppendLine("\n==============================");
+            fileContent.AppendLine("  SUMMARY");
+            fileContent.AppendLine("==============================");
+            fileContent.AppendLine($"Total Cost: {totalCost:F2} minutes\n");
+
+            fileContent.AppendLine("File saved successfully.");
+            fileContent.AppendLine("==============================");
+
+            string desktopPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Desktop);
+            detailedSolutionPath = System.IO.Path.Combine(desktopPath, "DetailedSolution.txt");
+            System.IO.File.WriteAllText(detailedSolutionPath, fileContent.ToString());
+            Debug.Log("Fișier salvat pe desktop: " + detailedSolutionPath);
+
 Debug.Log($"Detailed solution saved to: {detailedSolutionPath}");
             
             // Update the text box to display only the total cost
